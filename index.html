@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SaaS Via – An AI growth assistant on WhatsApp</title>
+<meta name="description" content="Tell SaaS Via about your online product on WhatsApp. Get a concrete growth plan in minutes. Free to start.">
+<style>
+:root{--bg:#f7f9fc;--card:#fff;--ink:#0f172a;--muted:#5b6478;--line:#e3e8f0;--a:#4f46e5;--b:#0ea5d9;--wa:#25d366;--wad:#128c4a;--pt:env(safe-area-inset-top,0px);--pb:env(safe-area-inset-bottom,0px)}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1020;--card:#131a2e;--ink:#eef2ff;--muted:#a3adc7;--line:#232c47}}
+:root[data-theme="dark"]{--bg:#0b1020;--card:#131a2e;--ink:#eef2ff;--muted:#a3adc7;--line:#232c47}
+*{box-sizing:border-box;margin:0}
+:root{padding-top:var(--pt);padding-bottom:var(--pb)}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em}
+h1{font-size:clamp(2.1rem,6vw,3.6rem);font-weight:800}
+h2{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:750;margin-bottom:.6rem}
+p{color:var(--muted)}
+.wrap{max-width:1080px;margin:auto;padding:0 1.2rem}
+section{padding:4rem 0}
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.1rem}
+.logo svg{width:32px;height:32px}
+.nav nav{display:flex;align-items:center;gap:1.4rem;font-size:.95rem;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--wa);color:#04210f;font-weight:700;padding:.85rem 1.4rem;border-radius:12px;box-shadow:0 4px 0 var(--wad);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--wad)}
+.btn-sm{padding:.5rem 1rem;font-size:.9rem}
+.hero{padding:3.5rem 0 3rem}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
+.grad{background:linear-gradient(135deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:1.15rem;margin:1.1rem 0 1.6rem;max-width:34rem}
+.assure{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin-top:1.1rem;font-size:.9rem;color:var(--muted)}
+.assure span:before{content:"✓ ";color:var(--wad);font-weight:700}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1rem;box-shadow:0 20px 40px rgba(15,23,42,.12)}
+.chat-h{display:flex;align-items:center;gap:.6rem;padding-bottom:.8rem;border-bottom:1px solid var(--line);font-weight:600}
+.chat-h i{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#fff;font:700 .8rem system-ui}
+.msgs{display:flex;flex-direction:column;gap:.5rem;padding-top:.9rem}
+.m{max-width:85%;padding:.55rem .85rem;border-radius:14px;font-size:.92rem;color:var(--ink);background:var(--line)}
+.m.me{align-self:flex-end;background:#d9fdd3;color:#0b2a12}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.4rem}
+.card h3{font-size:1.1rem;margin-bottom:.3rem}
+.num{font-weight:800;color:var(--a);font-size:.85rem;margin-bottom:.4rem}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1rem 1.2rem;margin-bottom:.6rem}
+.faq summary{font-weight:600;cursor:pointer}
+.faq p{margin-top:.5rem}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.5rem}
+.stat{font-size:2rem;font-weight:800}
+.tag{font-size:.75rem;color:var(--muted);border:1px dashed var(--line);border-radius:99px;padding:.1rem .6rem;display:inline-block;margin-top:.6rem}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem}
+.post{cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%;transition:border-color .2s}
+.post:hover{border-color:var(--b)}
+.meta{font-size:.8rem;color:var(--b);margin-bottom:.4rem}
+.cta{text-align:center;background:linear-gradient(135deg,var(--a),var(--b));border-radius:24px;padding:3rem 1.4rem;color:#fff}
+.cta p{color:#e6f0ff;margin:.6rem 0 1.5rem}
+dialog{border:0;border-radius:18px;max-width:640px;width:calc(100% - 2rem);background:var(--card);color:var(--ink);padding:1.6rem;max-height:85vh}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog p{margin:.8rem 0}
+.x{float:right;background:none;border:0;font-size:1.6rem;color:var(--muted);cursor:pointer}
+footer{border-top:1px solid var(--line);padding:1.6rem 0 5rem;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.wa-float{position:fixed;right:18px;bottom:calc(18px + var(--pb));z-index:30;display:flex;align-items:center;gap:.5rem;background:var(--wa);color:#04210f;font-weight:700;padding:.85rem 1.1rem;border-radius:99px;box-shadow:0 4px 0 var(--wad),0 10px 22px rgba(0,0,0,.3)}
+.wa-float svg{width:24px;height:24px}
+@media(max-width:800px){.hero .wrap,.steps{grid-template-columns:1fr}.nav nav a:not(.btn){display:none}.wa-float span{display:none}.wa-float{padding:.9rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top" aria-label="SaaS Via home">
+    <svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#0ea5d9"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#g)"/><path d="M17 20 L28 45 L37 28 L46 43" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="20" r="4" fill="#fff"/><circle cx="47" cy="44" r="5" fill="#fff"/></svg>
+    SaaS Via</a>
+  <nav><a href="#how">How it works</a><a href="#results">Results</a><a href="#blog">Blog</a><a class="btn btn-sm wa" href="#">Start chat</a></nav>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div>
+    <h1>Grow your online product. <span class="grad">Just send a message.</span></h1>
+    <p class="lead">SaaS Via is an AI assistant on WhatsApp. Tell it what you sell and what's slowing you down, and it gives you a concrete next step for marketing, follow-ups, support and tools.</p>
+    <a class="btn wa" href="#">Chat with SaaS Via on WhatsApp →</a>
+    <div class="assure"><span>Free to start</span><span>No signup or app</span><span>Reply in seconds</span></div>
+  </div>
+  <div class="chat" aria-label="Example conversation">
+    <div class="chat-h"><i>SV</i>Saas Via</div>
+    <div class="msgs">
+      <div class="m me">Hello, can I get more info?</div>
+      <div class="m">Of course! What kind of business do you run, and are you using any tools?</div>
+      <div class="m me">Manual. Monthly subscription model.</div>
+      <div class="m">What's your comfortable monthly budget? I'll recommend something that fits.</div>
+      <div class="m me">5000 PKR</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <h2>Three steps. No forms.</h2>
+  <p>You never leave WhatsApp, so there's nothing to install or learn.</p>
+  <div class="steps">
+    <div class="card"><div class="num">1</div><h3>Say hello</h3><p>Tap the button. Your chat opens with a message already typed.</p></div>
+    <div class="card"><div class="num">2</div><h3>Describe your business</h3><p>What you sell, how you work today, where time or sales are leaking, and your budget.</p></div>
+    <div class="card"><div class="num">3</div><h3>Get a plan that fits</h3><p>Specific tools and actions sized to your budget, not a generic list.</p></div>
+  </div>
+</div></section>
+
+<section id="results"><div class="wrap">
+  <h2>Results from real conversations</h2>
+  <p>Replace the cards below with your own verified numbers and quotes as you collect them.</p>
+  <div class="res" id="res"></div>
+</div></section>
+
+<section id="faq"><div class="wrap faq">
+  <h2>Before you start</h2>
+  <details><summary>Does it cost anything?</summary><p>Starting a chat is free. It will ask your budget so recommendations stay realistic.</p></details>
+  <details><summary>Am I talking to a person?</summary><p>No. It's an AI assistant, built to be quick and practical. It's best for planning and next steps.</p></details>
+  <details><summary>Will you spam me?</summary><p>No. The conversation is yours: you message first, and you can stop any time.</p></details>
+  <details><summary>Is it only for SaaS?</summary><p>No. It's for any online business, such as subscriptions, digital products and services.</p></details>
+</div></section>
+
+<section id="blog"><div class="wrap">
+  <h2>Growth notes for builders</h2>
+  <p>Short, practical guides. Add a post by adding one entry to the POSTS list in this file.</p>
+  <div class="posts" id="posts"></div>
+</div></section>
+
+<section><div class="wrap"><div class="cta">
+  <h2>Tell us what you're building.</h2>
+  <p>One message is enough to start.</p>
+  <a class="btn wa" href="#">Open WhatsApp →</a>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> SaaS Via · saasvia.com</span><span><a href="#how">How it works</a> · <a href="#blog">Blog</a></span></div></footer>
+
+<a class="wa-float wa" href="#" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" fill="none" stroke="#04210f" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M16 3A13 13 0 0 0 4.800 22.600L3 29l6.600-1.800A13 13 0 1 0 16 3z"/></svg><span>Chat now</span></a>
+
+<dialog id="dlg"><button class="x" aria-label="Close" onclick="dlg.close()">×</button><div id="art"></div><a class="btn wa" href="#" style="margin-top:1rem">Talk to SaaS Via about this →</a></dialog>
+
+<script>
+/* ===== CONFIG ===== */
+// International format, digits only. Replace with the real SaaS Via number.
+const NUMBER="923001234567";
+const MESSAGE="Hi! I'd like help growing my online product.";
+
+// Replace with real, verified results.
+const RESULTS=[
+  {stat:"5,000 PKR",text:"A subscription owner switched from manual work to a budget-fit support tool plan in one chat.",who:"Example · from a real chat"},
+  {stat:"+__%",text:"Add a real metric, e.g. trial-to-paid conversion after follow-up automation.",who:"Placeholder"},
+  {stat:"“Quote”",text:"Add a short, real customer testimonial with name and business.",who:"Placeholder"}
+];
+
+// Add posts here. Newest first.
+const POSTS=[
+  {title:"Automate follow-ups before you buy any tool",cat:"Guides",date:"Sep 25, 2026",excerpt:"Most lost sales happen after the first reply.",body:["Write down every point where a lead waits on you: first reply, pricing question, renewal reminder.","Fix the slowest one first with a saved reply or a scheduled message. Tools come after the process is clear."]},
+  {title:"Pricing a monthly subscription from zero",cat:"Pricing",date:"Sep 18, 2026",excerpt:"Start simple, then adjust with real usage.",body:["Begin with one plan and one price. Complexity can wait until customers ask for it.","Review churn monthly. If people leave in month one, the problem is onboarding, not price."]},
+  {title:"Support without a support team",cat:"Support",date:"Sep 10, 2026",excerpt:"Answer the top five questions once, reuse forever.",body:["List the five questions you answer most. Write the best answer to each once.","Put them where customers already are, like WhatsApp quick replies, before adding a helpdesk."]}
+];
+
+const wa="https://wa.me/"+NUMBER+"?text="+encodeURIComponent(MESSAGE);
+document.querySelectorAll(".wa").forEach(a=>{a.href=wa;a.target="_blank";a.rel="noopener"});
+document.getElementById("yr").textContent=new Date().getFullYear();
+document.getElementById("res").innerHTML=RESULTS.map(r=>`<div class="card"><div class="stat grad">${r.stat}</div><p>${r.text}</p><span class="tag">${r.who}</span></div>`).join("");
+document.getElementById("posts").innerHTML=POSTS.map((p,i)=>`<button class="card post" data-i="${i}"><div class="meta">${p.cat} · ${p.date}</div><h3>${p.title}</h3><p>${p.excerpt}</p></button>`).join("");
+const dlg=document.getElementById("dlg");
+document.getElementById("posts").addEventListener("click",e=>{const b=e.target.closest(".post");if(!b)return;const p=POSTS[b.dataset.i];
+  document.getElementById("art").innerHTML=`<div class="meta">${p.cat} · ${p.date}</div><h2>${p.title}</h2>`+p.body.map(t=>`<p>${t}</p>`).join("");dlg.showModal()});
+</script>
+</body>
+</html>
